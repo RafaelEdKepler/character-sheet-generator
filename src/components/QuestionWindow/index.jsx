@@ -43,7 +43,7 @@ const QuestionWindow = () => {
             <HelperContainer>
                 <RowContainer>
                     <HelperIconContainer>
-                        <Img
+                        <Img                            
                             src="./help_icon.svg"
                         />
                     </HelperIconContainer>

@@ -47,6 +47,10 @@ export const Img = styled.img`
     width: ${px2vw(20)};
     height: ${px2vw(20)};    
     margin: ${px2vw(3)} 0 0 0;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const Check = styled.input`
