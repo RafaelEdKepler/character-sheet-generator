@@ -2,8 +2,8 @@ import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { ClassHability } from "./ClassHability";
 import { v4 as uuid } from "uuid";
 
-@Entity('class_hability_pre_requisites')
-class ClassHabilityPreRequisite {
+@Entity('benefit_class_habilities')
+class BenefitClassHability {
     @PrimaryColumn()
     id;
 
@@ -27,4 +27,4 @@ class ClassHabilityPreRequisite {
 
 }
 
-export { ClassHabilityPreRequisite };
+export { BenefitClassHability };

@@ -1,6 +1,9 @@
 {
     "type": "sqlite",
     "database": "pages/api/database/database.sqlite",
+    "migartions": [
+        "pages/api/database/migrations/**.ts"
+    ],
     "synchronize": true,
     "cli": {
         "migrationsDir": "pages/api/database/migrations"

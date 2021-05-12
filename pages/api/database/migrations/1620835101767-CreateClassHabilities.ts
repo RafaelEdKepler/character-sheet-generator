@@ -1,22 +1,36 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateClasses1620697443456 implements MigrationInterface {
+export class CreateClassHabilities1620835101767 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "classes",
+                name: "class_habilities",
                 columns: [
                     {
                         name: "id",
                         type: "uuid",
                         isPrimary: true
                     }, {
+                        name: "class_id",
+                        type: "uuid"
+                    },
+                    {
                         name: "name",
                         type: "varchar"
                     }, {
                         name: "description",
                         type: "varchar"
+                    }
+                ],
+                foreignKeys: [
+                    {
+                        name: "FKClass",
+                        referencedTableName: "classes",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["class_id"],
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE"
                     }
                 ]
             })
@@ -24,7 +38,7 @@ export class CreateClasses1620697443456 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("classes");
+        queryRunner.dropTable("classHabilities");
     }
 
 }

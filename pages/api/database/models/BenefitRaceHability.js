@@ -1,14 +1,14 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import { ClassHability } from "./ClassHability";
+import { RaceHability } from "./RaceHability";
 import { v4 as uuid } from "uuid";
 
-@Entity('class_hability_pre_requisites')
-class ClassHabilityPreRequisite {
+@Entity('benefit_race_habilities')
+class BenefitsRaceHability {
     @PrimaryColumn()
     id;
 
-    @ManyToOne(() => ClassHability, classHability => classHability.id)
-    classHability;
+    @ManyToOne(() => RaceHability, raceHability => raceHability.id)
+    race_hability;
 
     @Column()
     type;
@@ -27,4 +27,4 @@ class ClassHabilityPreRequisite {
 
 }
 
-export { ClassHabilityPreRequisite };
+export { BenefitRace };

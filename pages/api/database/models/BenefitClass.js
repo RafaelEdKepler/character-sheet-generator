@@ -1,9 +1,9 @@
-import {Column, Entity, ManyToOne, PrimaryColumn} from "typeorm";
-import {Class} from "./Class";
-import {v4 as uuid} from "uuid";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Class } from "./Class";
+import { v4 as uuid } from "uuid";
 
-@Entity('benefits_classes')
-class BenefitsClass {
+@Entity('benefit_classes')
+class BenefitClass {
     @PrimaryColumn()
     id;
 
@@ -27,4 +27,4 @@ class BenefitsClass {
 
 }
 
-export {BenefitRace};
+export { BenefitClass };
