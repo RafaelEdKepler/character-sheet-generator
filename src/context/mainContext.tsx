@@ -10,7 +10,9 @@ interface MainContextData {
     list: string,
     setList: (list: string) => void,
     desc: string,
-    setDesc: (desc: string) => void
+    setDesc: (desc: string) => void,
+    title: string,
+    setTitle: (desc: string) => void
 }
 
 
@@ -20,9 +22,10 @@ export function MainProvider({
     children
 }) {
     const [sheet, setSheet] = useState<SheetInterface>();
-    const [page, setPage] = useState<string>("login");
+    const [page, setPage] = useState<string>("inicial");
     const [list, setList] = useState<string>();
     const [desc, setDesc] = useState<string>();
+    const [title, setTitle] = useState<string>("SEJA BEM VINDO!");
 
     return (
         <MainContext.Provider value={{
@@ -33,7 +36,9 @@ export function MainProvider({
             list,
             setList,
             desc,
-            setDesc
+            setDesc,
+            title,
+            setTitle
         }}>
             {children}
         </MainContext.Provider>

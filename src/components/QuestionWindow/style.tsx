@@ -11,13 +11,14 @@ export const Container = styled.div`
     align-items: center;
     border-radius: ${px2vw(10)};
     border-style: solid;
+    border-width: ${px2vw(1)};
 `;
 
 export const ListContainer = styled.div`
     width: ${px2vw(445)};
     height: ${px2vw(149)};
-    margin: ${px2vw(10)};    
-    background: #FFF;    
+    margin: ${px2vw(10)};
+    background: #FFF;
     display: flex;
     flex-direction: column;
     border-style: solid;
@@ -37,6 +38,7 @@ export const RowContainer = styled.div`
 export const Title = styled.span`
     font-size: 1.5rem;
     margin: 10px 0 20px 0;
+    filter: drop-shadow(1px 1px 1px #000);
 `;
 
 export const RowText = styled.span`
@@ -45,7 +47,7 @@ export const RowText = styled.span`
 `
 export const Img = styled.img`
     width: ${px2vw(20)};
-    height: ${px2vw(20)};    
+    height: ${px2vw(20)};
     margin: ${px2vw(3)} 0 0 0;
 
     &:hover {
@@ -64,8 +66,8 @@ export const HelperContainer = styled(ListContainer)`
 `;
 
 export const HelperIconContainer = styled.div`
-    display: flex;    
-    justify-content: left;    
+    display: flex;
+    justify-content: left;
     width: 100%;
 `;
 
@@ -79,3 +81,37 @@ export const TextHelper = styled.textarea`
         outline: 0;
     }
 `
+
+export const InitialPageContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+export const BigButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+`;
+
+export const BigButton = styled.button`
+    width: ${px2vw(430)};
+    height: ${px2vw(50)};
+    margin: 0 0 ${px2vw(35)} 0;
+    border-radius: ${px2vw(5)};
+    background: #DB0090;
+    color: #FFF;
+    border-style: none;
+`;
+
+export const SubTitle = styled.span`
+
+`;
+
+export const ButtonText = styled.span`
+    font-size: 1.5rem;
+    -webkit-text-stroke: 1px white;
+`;
