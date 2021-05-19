@@ -1,7 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import { Container, ListContainer, RowContainer, Title, RowText, Img, 
-    Check, HelperContainer, TextHelper, HelperIconContainer } from "./style";
+import {
+    Container, ListContainer, RowContainer, Title, RowText, Img,
+    Check, HelperContainer, TextHelper, HelperIconContainer
+} from "./style";
+
+import axios from "axios";
 
 const QuestionWindow = () => {
     const [textHelper, setTextHelper] = useState('Isso aqui é um descritivo para verificar se o texto de ajuda está aparecendo corretamenteenteentennteentennteentennteentennteentennteentennteentennteentennteentennteentennteentennteenten');
@@ -12,43 +16,43 @@ const QuestionWindow = () => {
         'Anão': 'Anões são criaturas baixas e parrudas, possuem uma visão melhorada para se adaptar a vida nas minas, não costumam ser muito ágeis ou sorrateiros'
     })
     const [raca, setRaca] = useState([{
-            'value': 'Humano',
-        },{
-            'value': 'Elfo',
-        },{
-            'value': 'Anão'
-        }
+        'value': 'Humano',
+    }, {
+        'value': 'Elfo',
+    }, {
+        'value': 'Anão'
+    }
     ]);
 
     const handleClick = (id) => {
         setTextHelper(desc[id]);
     }
 
-    return(
+    return (
         <Container>
             <Title>Escolha sua raça!</Title>
             <ListContainer>
-                    {raca.map((index) => 
-                        <RowContainer>
-                            <RowText>{index.value}</RowText>                    
-                            <Img
-                                onClick={() => handleClick(index.value)}
-                                id={index.value}
-                                src="./help_icon.svg"
-                            />
-                            <Check id={index.value} type="checkbox"/>
-                        </RowContainer>
-                    )}
+                {raca.map((index) =>
+                    <RowContainer>
+                        <RowText>{index.value}</RowText>
+                        <Img
+                            onClick={() => handleClick(index.value)}
+                            id={index.value}
+                            src="./help_icon.svg"
+                        />
+                        <Check id={index.value} type="checkbox" />
+                    </RowContainer>
+                )}
             </ListContainer>
             <HelperContainer>
                 <RowContainer>
                     <HelperIconContainer>
-                        <Img                            
+                        <Img
                             src="./help_icon.svg"
                         />
                     </HelperIconContainer>
                 </RowContainer>
-                <TextHelper readonly value={textHelper}/>
+                <TextHelper readonly value={textHelper} />
             </HelperContainer>
         </Container>
     );
