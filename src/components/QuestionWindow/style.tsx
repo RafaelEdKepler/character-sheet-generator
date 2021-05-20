@@ -16,6 +16,14 @@ export const TransitionAnimation = keyframes`
     }
 `;
 
+export const BlockedTransition = keyframes`    
+    0% {margin-left: 0; border-color: red;}
+    25% {margin-left: 5px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -5px;}
+    100% {margin-left: 0; border-color: black;}
+`;
+
 export const Container = styled.div`
     width: ${px2vw(513)};
     height: ${px2vw(404)};
@@ -42,6 +50,9 @@ export const ListContainer = styled.div`
     padding: ${px2vw(5)};
     border-radius: 5px;
     overflow-x: hidden;
+    animation-name: ${props => props.animation ? BlockedTransition : ''};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
 `;
 
 export const RowContainer = styled.div`
