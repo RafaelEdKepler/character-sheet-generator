@@ -4,7 +4,8 @@ import {
     Container, ListContainer, RowContainer, Title, RowText, Img,
     Check, HelperContainer, TextHelper, HelperIconContainer,
     InitialPageContainer, BigButton, SubTitle, ButtonText,
-    BigButtonContainer
+    BigButtonContainer, OptionsContainer, QuestionContainer,
+    NextContainer, NextButton
 } from "./style";
 
 import axios from "axios";
@@ -48,33 +49,40 @@ const QuestionWindow = () => {
                 )
             }
             {page !== "inicial" && (
-                <>
-                    <ListContainer>
-                        {list ? (list.map((index, key) =>
-                            <RowContainer key={key}>
-                                <RowText>{index.name}</RowText>
-                                <Img
-                                    onClick={() => handleClick(index.description)}
-                                    id={index.name}
-                                    src="./help_icon.svg"
-                                />
-                                <Check id={index.name} type="checkbox" />
+                <QuestionContainer>
+                    <OptionsContainer>
+                        <ListContainer>
+                            {list ? (list.map((index, key) =>
+                                <RowContainer key={key}>
+                                    <RowText>{index.name}</RowText>
+                                    <Img
+                                        onClick={() => handleClick(index.description)}
+                                        id={index.name}
+                                        src="./help_icon.svg"
+                                    />
+                                    <Check id={index.name} type="checkbox" />
+                                </RowContainer>
+                            )) : (
+                                <></>
+                            )}
+                        </ListContainer>
+                        <HelperContainer>
+                            <RowContainer>
+                                <HelperIconContainer>
+                                    <Img
+                                        src="./help_icon.svg"
+                                    />
+                                </HelperIconContainer>
                             </RowContainer>
-                        )) : (
-                            <></>
-                        )}
-                    </ListContainer>
-                    <HelperContainer>
-                        <RowContainer>
-                            <HelperIconContainer>
-                                <Img
-                                    src="./help_icon.svg"
-                                />
-                            </HelperIconContainer>
-                        </RowContainer>
-                        <TextHelper readonly onChange={() => console.log()} value={textHelper} />
-                    </HelperContainer>
-                </>
+                            <TextHelper readonly onChange={() => console.log()} value={textHelper} />
+                        </HelperContainer>
+                    </OptionsContainer>
+                    <NextContainer>
+                        <NextButton>
+                            <Img src="./next1.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                </QuestionContainer>
             )}
         </Container>
     );

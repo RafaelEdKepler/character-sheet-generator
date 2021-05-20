@@ -138,3 +138,36 @@ export const ButtonText = styled.span`
     font-size: 1.5rem;
     -webkit-text-stroke: 1px white;
 `;
+
+export const OptionsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const QuestionContainer = styled.div`
+    display: flex;
+    flex-diretcion: row;
+`;
+
+export const NextContainer = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const NextButton = styled.button`
+    outline: 0;
+    border-style: none;
+    width: ${px2vw(30)};
+    height: ${px2vw(30)};
+    background-color: rgba(0,0,0,0);
+    transition: border-color 3s ease;
+    border-radius: ${px2vw(5)};
+    border-color: rgba(0,0,0,0);
+
+    &:hover {
+        border-color: rgba(0,0,0,1);
+        border-style: solid;
+    }
+`;
