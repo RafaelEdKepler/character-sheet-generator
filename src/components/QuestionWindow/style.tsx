@@ -1,6 +1,20 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import px2vw from "../../utils/px2vw";
+
+export const TransitionAnimation = keyframes`
+    40% {
+        transform: translateX(100vw);
+        opacity: 1;
+    }
+    41% {
+        transform: translateX(-100vw);
+    }
+    100% {
+        opcaity: 0;
+        transform: translateX(0);
+    }
+`;
 
 export const Container = styled.div`
     width: ${px2vw(513)};
@@ -12,6 +26,9 @@ export const Container = styled.div`
     border-radius: ${px2vw(10)};
     border-style: solid;
     border-width: ${px2vw(1)};
+    animation-name: ${props => props.animation ? TransitionAnimation : ''};
+    animation-duration: 1s;
+    animation-iteration-count: 1;
 `;
 
 export const ListContainer = styled.div`
@@ -105,6 +122,12 @@ export const BigButton = styled.button`
     background: #DB0090;
     color: #FFF;
     border-style: none;
+
+    &:hover {
+        border-style: groove;
+        border-color: #000;
+        -webkit-border-stroke: 1px black;
+    }
 `;
 
 export const SubTitle = styled.span`

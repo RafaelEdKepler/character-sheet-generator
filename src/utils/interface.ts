@@ -1,3 +1,10 @@
+export interface TableInterface {
+    name: string,
+    description: string,
+    id: string
+    pre_requesits: string
+}
+
 export interface SheetInterface {
     nome: string,
     race: string,

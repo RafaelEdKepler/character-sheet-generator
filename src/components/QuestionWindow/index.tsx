@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
     Container, ListContainer, RowContainer, Title, RowText, Img,
@@ -9,57 +9,59 @@ import {
 
 import axios from "axios";
 import { MainContext } from "../../context/mainContext";
+import { TableInterface } from "../../utils/interface";
 
 const QuestionWindow = () => {
-    const { title, page } = useContext(MainContext);
+    const { title, page, setPage, list, subTitle, quantity } = useContext(MainContext);
 
-    const [textHelper, setTextHelper] = useState('Isso aqui é um descritivo para verificar se o texto de ajuda está aparecendo corretamenteenteentennteentennteentennteentennteentennteentennteentennteentennteentennteentennteentennteenten');
+    const [animation, setAnimation] = useState(null);
 
-    const [desc, setDesc] = useState({
-        'Humano': 'Humanos são a raça mais populosa de Arton, não possuem nenhuma característica diferente dos humanos que você conhece.',
-        'Elfo': 'Elfos são criaturas altas e esguias, possuem algumas habilidade a mais, podendo enxergar melhor durante a noite, porém não costumam ser muito resistentes.',
-        'Anão': 'Anões são criaturas baixas e parrudas, possuem uma visão melhorada para se adaptar a vida nas minas, não costumam ser muito ágeis ou sorrateiros'
-    })
-    const [raca, setRaca] = useState([{
-        'value': 'Humano',
-    }, {
-        'value': 'Elfo',
-    }, {
-        'value': 'Anão'
+    const [textHelper, setTextHelper] = useState('Não sabe o que um dos itens na lista representa? Clique na caixinha de questão da linha em questão e veja!');
+
+    const defineAnimation = () => {
+        setAnimation(1);
+        if (page === 'inicial') {
+            setPage('race');
+        }
+        setTimeout(function () {
+            setAnimation(null);
+            clearTimeout();
+        }, 1000);
     }
-    ]);
 
-    const handleClick = (id) => {
-        setTextHelper(desc[id]);
+    const handleClick = (description) => {
+        setTextHelper(description);
     }
 
     return (
-        <Container>
+        <Container animation={animation}>
             <Title>{title}</Title>
+            <SubTitle>{subTitle}</SubTitle>
             {
                 page === "inicial" && (
                     <InitialPageContainer>
-                        <SubTitle>Você gostaria de criar uma ficha nova ou carregar uma existente?</SubTitle>
                         <BigButtonContainer>
-                            <BigButton><ButtonText><b>Começar uma nova!</b></ButtonText></BigButton>
+                            <BigButton onClick={() => defineAnimation()}><ButtonText><b>Começar uma nova!</b></ButtonText></BigButton>
                             <BigButton><ButtonText><b>Carregar uma existente!</b></ButtonText></BigButton>
                         </BigButtonContainer>
                     </InitialPageContainer>
                 )
             }
-            {page === "outracoisa" && (
+            {page !== "inicial" && (
                 <>
                     <ListContainer>
-                        {raca.map((index) =>
-                            <RowContainer>
-                                <RowText>{index.value}</RowText>
+                        {list ? (list.map((index, key) =>
+                            <RowContainer key={key}>
+                                <RowText>{index.name}</RowText>
                                 <Img
-                                    onClick={() => handleClick(index.value)}
-                                    id={index.value}
+                                    onClick={() => handleClick(index.description)}
+                                    id={index.name}
                                     src="./help_icon.svg"
                                 />
-                                <Check id={index.value} type="checkbox" />
+                                <Check id={index.name} type="checkbox" />
                             </RowContainer>
+                        )) : (
+                            <></>
                         )}
                     </ListContainer>
                     <HelperContainer>
@@ -70,7 +72,7 @@ const QuestionWindow = () => {
                                 />
                             </HelperIconContainer>
                         </RowContainer>
-                        <TextHelper readonly value={textHelper} />
+                        <TextHelper readonly onChange={() => console.log()} value={textHelper} />
                     </HelperContainer>
                 </>
             )}

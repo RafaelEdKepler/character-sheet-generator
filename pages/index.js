@@ -3,13 +3,12 @@ import { useContext } from "react";
 import Head from 'next/head'
 import GlobalStyle from '../src/style/global';
 import QuestionWindow from '../src/components/QuestionWindow';
-import styles from '../src/styles/Home.module.css';
 
 import { MainProvider } from '../src/context/mainContext';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <GlobalStyle />
       <MainProvider>
         <Head>
