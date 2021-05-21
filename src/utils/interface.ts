@@ -18,28 +18,28 @@ export interface SheetInterface {
     size: string,
     desloc: string,
     hab: {
-        FOR: string,
-        DES: string,
-        CON: string,
-        INT: string,
-        SAB: string,
-        CAR: string
+        FOR: number,
+        DES: number,
+        CON: number,
+        INT: number,
+        SAB: number,
+        CAR: number
     },
     tes: {
-        FOR: string,
-        VON: string,
-        REF: string
+        FOR: number,
+        VON: number,
+        REF: number
     },
     sta: {
-        CA: string,
-        PV: string,
-        PM: string
+        CA: number,
+        PV: number,
+        PM: number
     },
     perks: [
         {
             name: string,
             grad: number,
-            mod: number,
+            mod: string,
             another: number
         }
     ],

@@ -16,16 +16,16 @@ export const TransitionAnimation = keyframes`
     }
 `;
 
-export const BlockedTransition = keyframes`    
-    0% {margin-left: 0; border-color: red;}
-    25% {margin-left: 5px;}
-    50% {margin-left: 0;}
-    75% {margin-left: -5px;}
-    100% {margin-left: 0; border-color: black;}
+export const BlockedTransition = keyframes`
+    0% {padding-left: 0; border-color: red;}
+    25% {padding-left: 13px;}
+    50% {padding-left: 0;}
+    75% {padding-left: 5px;}
+    100% {padding-left: 0; border-color: black;}
 `;
 
 export const Container = styled.div`
-    width: ${px2vw(513)};
+    width: ${px2vw(613)};
     height: ${px2vw(404)};
     background: var(--grey);
     display: flex;
@@ -40,6 +40,18 @@ export const Container = styled.div`
 `;
 
 export const ListContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation-name: ${props => props.animation ? BlockedTransition : ''};
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+`;
+
+export const List = styled.div`
     width: ${px2vw(445)};
     height: ${px2vw(149)};
     margin: ${px2vw(10)};
@@ -50,9 +62,8 @@ export const ListContainer = styled.div`
     padding: ${px2vw(5)};
     border-radius: 5px;
     overflow-x: hidden;
-    animation-name: ${props => props.animation ? BlockedTransition : ''};
-    animation-duration: 1s;
-    animation-iteration-count: 1;
+    border-color: ${props => props.border};
+    transition: border-color 0.5s;
 `;
 
 export const RowContainer = styled.div`
@@ -89,8 +100,9 @@ export const Check = styled.input`
     border-radius: ${px2vw(5)};
 `
 
-export const HelperContainer = styled(ListContainer)`
+export const HelperContainer = styled(List)`
     height: ${px2vw(109)};
+    animation-name: '';
 `;
 
 export const HelperIconContainer = styled.div`
@@ -162,8 +174,9 @@ export const QuestionContainer = styled.div`
 
 export const NextContainer = styled.div`
     height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 `;
 
@@ -176,9 +189,40 @@ export const NextButton = styled.button`
     transition: border-color 3s ease;
     border-radius: ${px2vw(5)};
     border-color: rgba(0,0,0,0);
+`;
 
-    &:hover {
-        border-color: rgba(0,0,0,1);
-        border-style: solid;
-    }
+export const BasicStatsContainer = styled.div`
+    margin-top: ${px2vw(50)};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const FieldContainer = styled.div`
+    width: ${px2vw(445)};
+    height: ${px2vw(30)};
+    display: flex;
+    animation-name: ${props => props.animation ? BlockedTransition : ''};
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+`;
+
+export const Span = styled.div`
+    margin: ${px2vw(5)};
+    color: ${props => props.border ? 'red' : 'black'};
+    width: ${px2vw(80)};
+`;
+
+export const Field = styled.input`
+    border-radius: ${px2vw(5)};
+    width: ${px2vw(300)};
+    margin: ${px2vw(5)};
+    border-color: ${props => props.border ? 'red' : 'black'};
+`;
+
+export const Select = styled.select`
+    border-radius: ${px2vw(5)};
+    width: ${px2vw(300)};
+    margin: ${px2vw(5)};
 `;
