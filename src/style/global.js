@@ -9,6 +9,7 @@ export default createGlobalStyle`
     :root {
         --gradient: linear-gradient(#DC0000, #000000);
         --grey: linear-gradient(#FFFFFF, #C4C4C4);
+        --dice-color: #742322;
     }
 
     body {

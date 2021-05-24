@@ -20,7 +20,11 @@ interface MainContextData {
     quantity: number,
     setQuantity: (quantity: number) => void,
     selected: string[],
-    setSelected: (selected: string[]) => void
+    setSelected: (selected: string[]) => void,
+    dice: number,
+    setDice: (dice: number) => void,
+    quantityDice: number,
+    setQuantityDice: (quantityDice: number) => void
 }
 
 
@@ -37,6 +41,8 @@ export function MainProvider({
     const [subTitle, setSubTitle] = useState<string>();
     const [quantity, setQuantity] = useState<number>(1);
     const [selected, setSelected] = useState<string[]>([]);
+    const [dice, setDice] = useState<number>(1);
+    const [quantityDice, setQuantityDice] = useState<number>(1);
 
     useEffect(() => {
         if (page !== "inicial") {
@@ -58,6 +64,10 @@ export function MainProvider({
                 if (page === 'name') {
                     setQuantity(0);
                     setSubTitle(`Agora, você deve escolher as informações básicas do seu personagem!`);
+                }
+                if (page === 'fill') {
+                    setQuantity(0);
+                    setSubTitle(`Agora, escolha a maneria que deseja informar o valor de suas habilidades!`);
                 }
             } catch (e) {
                 console.log(e);
@@ -179,7 +189,11 @@ export function MainProvider({
             quantity,
             setQuantity,
             selected,
-            setSelected
+            setSelected,
+            dice,
+            setDice,
+            quantityDice,
+            setQuantityDice
         }}>
             {children}
         </MainContext.Provider>

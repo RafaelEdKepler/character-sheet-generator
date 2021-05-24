@@ -8,11 +8,12 @@ import {
     InitialPageContainer, BigButton, SubTitle, ButtonText,
     BigButtonContainer, OptionsContainer, QuestionContainer,
     NextContainer, NextButton, List, FieldContainer, Span, Field, Select,
-    BasicStatsContainer
+    BasicStatsContainer, FillWayContainer
 } from "./style";
 import order from "../../utils/order";
 import translate from "../../utils/translate";
 import { MainContext } from "../../context/mainContext";
+import DiceRollWindow from "../DiceRollWindow";
 
 const QuestionWindow = () => {
     const { title, page, setPage, list, subTitle,
@@ -24,10 +25,11 @@ const QuestionWindow = () => {
     const [blockAgeAnimation, setBlockAgeAnimation] = useState(null);
     const [border, setBorder] = useState('black');
     const [textHelper, setTextHelper] = useState('Não sabe o que um dos itens na lista representa? Clique na caixinha de questão da linha em questão e veja!');
-    const [name, setName] = useState();
-    const [age, setAge] = useState();
+    const [name, setName] = useState<string>("");
+    const [age, setAge] = useState<string>("");
     const [tendency, setTendency] = useState('NN');
     const [divinity, setDivinity] = useState();
+    const [manual, setManual] = useState(false);
 
 
     const listPages = [
@@ -122,8 +124,35 @@ const QuestionWindow = () => {
                     draft.nome = name;
                     draft.tend = tendency;
                 }))
+                setPage(order[page]);
+            }
+            if (page === 'fill') {
+                if (manual) {
+                }
+                if (!manual) {
+                    setTransitionAnimation(1);
+                    setTimeout(function () {
+                        setTransitionAnimation(null);
+                        clearTimeout();
+                    }, 1000)
+                    setPage("manual");
+                }
             }
             console.log(sheet);
+        }
+    }
+
+    const setWayFillStats = (way: boolean) => {
+        setManual(way);
+        handleNextClick();
+    }
+
+    const setBasicStats = (type: string, value: string) => {
+        if (type === "name") {
+            setName(value);
+        }
+        if (type === "age") {
+            setAge(value);
         }
     }
 
@@ -194,11 +223,11 @@ const QuestionWindow = () => {
                     <BasicStatsContainer>
                         <FieldContainer animation={blockNameAnimation}>
                             <Span border={blockNameAnimation}>Nome:</Span>
-                            <Field border={blockNameAnimation} value={name} onChange={(e) => setName(e.target.value)} />
+                            <Field border={blockNameAnimation} value={name} onChange={(e) => setBasicStats("name", e.target.value)} />
                         </FieldContainer>
                         <FieldContainer animation={blockAgeAnimation}>
                             <Span border={blockAgeAnimation}>Idade:</Span>
-                            <Field border={blockAgeAnimation} value={age} onChange={(e) => setAge(e.target.value)} />
+                            <Field border={blockAgeAnimation} value={age} onChange={(e) => setBasicStats("age", e.target.value)} />
                         </FieldContainer>
                         <FieldContainer>
                             <Span>Tendência:</Span>
@@ -243,6 +272,41 @@ const QuestionWindow = () => {
                     </BasicStatsContainer>
                     <NextContainer>
                         <NextButton onClick={() => handleNextClick()}>
+                            <Img src="./next1.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                </QuestionContainer>
+            )}
+            {page === "fill" && (
+                <FillWayContainer>
+                    <NextContainer>
+                        <NextButton onClick={() => handleNextClick()}>
+                            <Img src="./before.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                    <InitialPageContainer>
+                        <BigButtonContainer>
+                            <BigButton onClick={() => setWayFillStats(false)}><ButtonText><b>Girar os dados!</b></ButtonText></BigButton>
+                            <BigButton onClick={() => setWayFillStats(true)}><ButtonText><b>Inserir valor personalizado!</b></ButtonText></BigButton>
+                        </BigButtonContainer>
+                    </InitialPageContainer>
+                    <NextContainer>
+                        <NextButton disabled>
+                            <Img src="./next1.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                </FillWayContainer>
+            )}
+            {page === 'manual' && (
+                <QuestionContainer>
+                    <NextContainer>
+                        <NextButton onClick={() => handleNextClick()}>
+                            <Img src="./before.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                    <DiceRollWindow />
+                    <NextContainer>
+                        <NextButton disabled>
                             <Img src="./next1.png"></Img>
                         </NextButton>
                     </NextContainer>

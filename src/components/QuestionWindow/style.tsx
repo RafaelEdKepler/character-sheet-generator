@@ -171,9 +171,12 @@ export const QuestionContainer = styled.div`
     display: flex;
     flex-diretcion: row;
 `;
+export const FillWayContainer = styled(QuestionContainer)`
+    margin-top: ${px2vw(50)};
+`;
 
 export const NextContainer = styled.div`
-    height: 100%;
+    height: ${px2vw(300)};
     width: 100%;
     display: flex;
     justify-content: right;
