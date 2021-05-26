@@ -24,7 +24,9 @@ interface MainContextData {
     dice: number,
     setDice: (dice: number) => void,
     quantityDice: number,
-    setQuantityDice: (quantityDice: number) => void
+    setQuantityDice: (quantityDice: number) => void,
+    transitionAnimation: boolean,
+    setTransitionAnimation: (transitionAnimation: boolean) => void
 }
 
 
@@ -43,6 +45,7 @@ export function MainProvider({
     const [selected, setSelected] = useState<string[]>([]);
     const [dice, setDice] = useState<number>(1);
     const [quantityDice, setQuantityDice] = useState<number>(1);
+    const [transitionAnimation, setTransitionAnimation] = useState<boolean>(false);
 
     useEffect(() => {
         if (page !== "inicial") {
@@ -193,7 +196,9 @@ export function MainProvider({
             dice,
             setDice,
             quantityDice,
-            setQuantityDice
+            setQuantityDice,
+            transitionAnimation,
+            setTransitionAnimation
         }}>
             {children}
         </MainContext.Provider>

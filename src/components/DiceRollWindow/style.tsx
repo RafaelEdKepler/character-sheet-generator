@@ -10,7 +10,7 @@ export const RowContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: ${px2vw(400)};
-    justify-content: space-evenly;
+    justify-content: center;
 
     &:first-child {
         margin-top: ${px2vw(20)};
@@ -24,12 +24,13 @@ export const QuantityContainer = styled.div`
 `;
 
 export const Input = styled.select`
-    width: ${px2vw(300)};
+    width: ${px2vw(250)};
     border-radius: ${px2vw(5)};
 `;
 
 export const Titulo = styled.span`
     margin-right: ${px2vw(10)};
+    font-size: 0.75rem;
 `;
 
 export const DiceContainer = styled.div`
@@ -37,7 +38,7 @@ export const DiceContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-right: ${px2vw(20)};
+    margin-right: ${px2vw(50)};
 `;
 
 export const Dice = styled.button`
@@ -47,10 +48,17 @@ export const Dice = styled.button`
     border-style: solid;
     border-radius: ${px2vw(5)};
     border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         border-color: white;
     }
+`;
+
+export const DiceText = styled.span`
+    font-size: 0.75rem;
 `;
 
 export const Img = styled.img`

@@ -3,7 +3,7 @@ import { MainContext } from "../../context/mainContext";
 
 import produce from "immer";
 
-import { Container, RowContainer, DiceContainer, Dice, Img, Input, QuantityContainer, Titulo } from "./style";
+import { Container, RowContainer, DiceContainer, Dice, Img, Input, QuantityContainer, Titulo, DiceText } from "./style";
 
 const DiceRollWindow = () => {
 
@@ -64,13 +64,13 @@ const DiceRollWindow = () => {
                     <Dice onClick={() => calculateStats(4)}>
                         <Img src="./d4.png" />
                     </Dice>
-                    <span><b>4 lados</b></span>
+                    <DiceText><b>4 lados</b></DiceText>
                 </DiceContainer>
                 <DiceContainer>
                     <Dice onClick={() => calculateStats(6)}>
                         <Img src="./d6.png" />
                     </Dice>
-                    <span><b>6 lados</b></span>
+                    <DiceText><b>6 lados</b></DiceText>
                 </DiceContainer>
             </RowContainer>
             <RowContainer>
@@ -78,13 +78,13 @@ const DiceRollWindow = () => {
                     <Dice onClick={() => calculateStats(8)}>
                         <Img src="./d8.png" />
                     </Dice>
-                    <span><b>8 lados</b></span>
+                    <DiceText><b>8 lados</b></DiceText>
                 </DiceContainer>
                 <DiceContainer>
                     <Dice onClick={() => calculateStats(10)}>
                         <Img src="./d10.png" />
                     </Dice>
-                    <span><b>10 lados</b></span>
+                    <DiceText><b>10 lados</b></DiceText>
                 </DiceContainer>
             </RowContainer>
             <RowContainer>
@@ -92,13 +92,13 @@ const DiceRollWindow = () => {
                     <Dice onClick={() => calculateStats(12)}>
                         <Img src="./d12.png" />
                     </Dice>
-                    <span><b>12 lados</b></span>
+                    <DiceText><b>12 lados</b></DiceText>
                 </DiceContainer>
                 <DiceContainer>
                     <Dice onClick={() => calculateStats(20)}>
                         <Img src="./d20.png" />
                     </Dice>
-                    <span><b>20 lados</b></span>
+                    <DiceText><b>20 lados</b></DiceText>
                 </DiceContainer>
             </RowContainer>
         </Container>

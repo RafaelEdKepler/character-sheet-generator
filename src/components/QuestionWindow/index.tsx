@@ -14,12 +14,13 @@ import order from "../../utils/order";
 import translate from "../../utils/translate";
 import { MainContext } from "../../context/mainContext";
 import DiceRollWindow from "../DiceRollWindow";
+import StatsWindow from "../StatsWindow";
 
 const QuestionWindow = () => {
     const { title, page, setPage, list, subTitle,
-        quantity, setQuantity, setSubTitle, sheet, setSheet, selected, setSelected } = useContext(MainContext);
+        quantity, setQuantity, setSubTitle, sheet, setSheet, selected,
+        setSelected, setTransitionAnimation, transitionAnimation } = useContext(MainContext);
 
-    const [transitionAnimation, setTransitionAnimation] = useState(null);
     const [blockAnimation, setBlockAnimation] = useState(null);
     const [blockNameAnimation, setBlockNameAnimation] = useState(null);
     const [blockAgeAnimation, setBlockAgeAnimation] = useState(null);
@@ -47,12 +48,12 @@ const QuestionWindow = () => {
     }, [list])
 
     const defineAnimation = () => {
-        setTransitionAnimation(1);
+        setTransitionAnimation(true);
         if (page === 'inicial') {
             setPage('race');
         }
         setTimeout(function () {
-            setTransitionAnimation(null);
+            setTransitionAnimation(false);
             clearTimeout();
         }, 1000);
     }
@@ -94,9 +95,9 @@ const QuestionWindow = () => {
                 setSheet(produce(sheet, draft => {
                     draft[page] = selected;
                 }))
-                setTransitionAnimation(1);
+                setTransitionAnimation(true);
                 setTimeout(function () {
-                    setTransitionAnimation(null);
+                    setTransitionAnimation(false);
                     clearTimeout();
                 }, 1000)
                 setPage(order[page]);
@@ -130,13 +131,21 @@ const QuestionWindow = () => {
                 if (manual) {
                 }
                 if (!manual) {
-                    setTransitionAnimation(1);
+                    setTransitionAnimation(true);
                     setTimeout(function () {
-                        setTransitionAnimation(null);
+                        setTransitionAnimation(false);
                         clearTimeout();
                     }, 1000)
                     setPage("manual");
                 }
+            }
+            if (page === 'manual') {
+                setTransitionAnimation(true);
+                setTimeout(function () {
+                    setTransitionAnimation(false);
+                    clearTimeout();
+                }, 1000)
+                setPage("stats");
             }
             console.log(sheet);
         }
@@ -305,6 +314,21 @@ const QuestionWindow = () => {
                         </NextButton>
                     </NextContainer>
                     <DiceRollWindow />
+                    <NextContainer>
+                        <NextButton disabled>
+                            <Img src="./next1.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                </QuestionContainer>
+            )}
+            {page === 'stats' && (
+                <QuestionContainer>
+                    <NextContainer>
+                        <NextButton onClick={() => handleNextClick()}>
+                            <Img src="./before.png"></Img>
+                        </NextButton>
+                    </NextContainer>
+                    <StatsWindow />
                     <NextContainer>
                         <NextButton disabled>
                             <Img src="./next1.png"></Img>
