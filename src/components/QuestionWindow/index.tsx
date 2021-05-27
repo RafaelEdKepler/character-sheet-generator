@@ -19,7 +19,8 @@ import StatsWindow from "../StatsWindow";
 const QuestionWindow = () => {
     const { title, page, setPage, list, subTitle,
         quantity, setQuantity, setSubTitle, sheet, setSheet, selected,
-        setSelected, setTransitionAnimation, transitionAnimation } = useContext(MainContext);
+        setSelected, setTransitionAnimation, transitionAnimation,
+        manual, setManual } = useContext(MainContext);
 
     const [blockAnimation, setBlockAnimation] = useState(null);
     const [blockNameAnimation, setBlockNameAnimation] = useState(null);
@@ -30,7 +31,6 @@ const QuestionWindow = () => {
     const [age, setAge] = useState<string>("");
     const [tendency, setTendency] = useState('NN');
     const [divinity, setDivinity] = useState();
-    const [manual, setManual] = useState(false);
 
 
     const listPages = [
@@ -91,18 +91,8 @@ const QuestionWindow = () => {
                 clearTimeout();
             }, 1000);
         } else {
-            if (listPages.indexOf(page) != -1) {
-                setSheet(produce(sheet, draft => {
-                    draft[page] = selected;
-                }))
-                setTransitionAnimation(true);
-                setTimeout(function () {
-                    setTransitionAnimation(false);
-                    clearTimeout();
-                }, 1000)
-                setPage(order[page]);
-            }
-            if (page == 'name') {
+            if (page === 'name') {
+                console.log(manual);
                 if (!name) {
                     setBlockNameAnimation(1);
                     setTimeout(function () {
@@ -125,19 +115,26 @@ const QuestionWindow = () => {
                     draft.nome = name;
                     draft.tend = tendency;
                 }))
+                setTransitionAnimation(true);
+                setTimeout(function () {
+                    setTransitionAnimation(false);
+                    clearTimeout();
+                }, 1000)
                 setPage(order[page]);
+                return;
             }
             if (page === 'fill') {
-                if (manual) {
-                }
+                setTransitionAnimation(true);
+                setTimeout(function () {
+                    setTransitionAnimation(false);
+                    clearTimeout();
+                }, 1000)
                 if (!manual) {
-                    setTransitionAnimation(true);
-                    setTimeout(function () {
-                        setTransitionAnimation(false);
-                        clearTimeout();
-                    }, 1000)
-                    setPage("manual");
+                    setPage("stats");
+                } else {
+                    setPage("manual")
                 }
+                return;
             }
             if (page === 'manual') {
                 setTransitionAnimation(true);
@@ -146,12 +143,25 @@ const QuestionWindow = () => {
                     clearTimeout();
                 }, 1000)
                 setPage("stats");
+                return;
             }
+            // if (listPages.indexOf(page) != -1) {
+            //     setSheet(produce(sheet, draft => {
+            //         draft[page] = selected;
+            //     }))
+            //     setTransitionAnimation(true);
+            //     setTimeout(function () {
+            //         setTransitionAnimation(false);
+            //         clearTimeout();
+            //     }, 1000)
+            // }
             console.log(sheet);
+            setPage(order[page]);
         }
     }
 
     const setWayFillStats = (way: boolean) => {
+        console.log(way);
         setManual(way);
         handleNextClick();
     }
@@ -295,8 +305,8 @@ const QuestionWindow = () => {
                     </NextContainer>
                     <InitialPageContainer>
                         <BigButtonContainer>
-                            <BigButton onClick={() => setWayFillStats(false)}><ButtonText><b>Girar os dados!</b></ButtonText></BigButton>
-                            <BigButton onClick={() => setWayFillStats(true)}><ButtonText><b>Inserir valor personalizado!</b></ButtonText></BigButton>
+                            <BigButton onClick={() => setWayFillStats(true)}><ButtonText><b>Girar os dados!</b></ButtonText></BigButton>
+                            <BigButton onClick={() => setWayFillStats(false)}><ButtonText><b>Inserir valor personalizado!</b></ButtonText></BigButton>
                         </BigButtonContainer>
                     </InitialPageContainer>
                     <NextContainer>

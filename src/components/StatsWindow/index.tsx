@@ -7,7 +7,7 @@ import { RowContainer, Container, TextInput, TextHability, InputHability, Button
 
 const StatsWindow = () => {
 
-    const { sheet, dice, quantityDice, setSheet } = useContext(MainContext);
+    const { sheet, dice, quantityDice, setSheet, manual } = useContext(MainContext);
     const [strength, setStrength] = useState<number>(0);
     const [dexterity, setDexterity] = useState<number>(0);
     const [constitution, setConstitution] = useState<number>(0);
@@ -89,63 +89,147 @@ const StatsWindow = () => {
             </RowContainer>
             <RowContainer>
                 <TextHability>Força</TextHability>
-                <InputHability type="number" min={1} max={999} value={strength} width='52' onChange={(e) => changeAttribute(e.target.value, "FOR")} id="strength"></InputHability>
-                <InputHability value={modifierStrength} width='32' readonly onChange={() => console.log('')} id="strengthModifier"></InputHability>
-                <ButtonReroll onClick={() => calculateStats('FOR')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability type="number" min={1} max={999} disabled value={strength} width='52' onChange={(e) => changeAttribute(e.target.value, "FOR")} id="strength"></InputHability>
+                        <InputHability value={modifierStrength} width='32' readonly onChange={() => console.log('')} id="strengthModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('FOR')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={strength} width='52' onChange={(e) => changeAttribute(e.target.value, "FOR")} id="strength"></InputHability>
+                        <InputHability value={modifierStrength} width='32' readonly onChange={() => console.log('')} id="strengthModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('FOR')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
             <RowContainer>
                 <TextHability>Destreza</TextHability>
-                <InputHability type="number" min={1} max={999} value={dexterity} width='52' onChange={(e) => changeAttribute(e.target.value, "DES")} id="dexterity"></InputHability>
-                <InputHability value={modifierDexterity} width='32' readonly onChange={() => console.log('')} id="dexterityModifier"></InputHability>
-                <ButtonReroll onClick={() => calculateStats('DES')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability type="number" disabled min={1} max={999} value={dexterity} width='52' onChange={(e) => changeAttribute(e.target.value, "DES")} id="dexterity"></InputHability>
+                        <InputHability value={modifierDexterity} width='32' readonly onChange={() => console.log('')} id="dexterityModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('DES')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={dexterity} width='52' onChange={(e) => changeAttribute(e.target.value, "DES")} id="dexterity"></InputHability>
+                        <InputHability value={modifierDexterity} width='32' readonly onChange={() => console.log('')} id="dexterityModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('DES')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
             <RowContainer>
                 <TextHability>Constituição</TextHability>
-                <InputHability type="number" min={1} max={999} value={constitution} width='52' onChange={(e) => changeAttribute(e.target.value, "CON")} id="constitution"></InputHability>
-                <InputHability value={modifierConstitution} width='32' readonly onChange={() => console.log('')} id="constitutionModifier"></InputHability>
-                <ButtonReroll onClick={() => calculateStats('CON')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability disabled type="number" min={1} max={999} value={constitution} width='52' onChange={(e) => changeAttribute(e.target.value, "CON")} id="constitution"></InputHability>
+                        <InputHability value={modifierConstitution} width='32' readonly onChange={() => console.log('')} id="constitutionModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('CON')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={constitution} width='52' onChange={(e) => changeAttribute(e.target.value, "CON")} id="constitution"></InputHability>
+                        <InputHability value={modifierConstitution} width='32' readonly onChange={() => console.log('')} id="constitutionModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('CON')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
             <RowContainer>
                 <TextHability>Inteligência</TextHability>
-                <InputHability type="number" min={1} max={999} value={intelligence} width='52' onChange={(e) => changeAttribute(e.target.value, "INT")} id="intelligence"></InputHability>
-                <InputHability value={modifierIntelligence} width='32' readonly onChange={() => console.log('')} id="intelligencehModifier"></InputHability>
-                <ButtonReroll onClick={() => calculateStats('INT')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability disabled type="number" min={1} max={999} value={intelligence} width='52' onChange={(e) => changeAttribute(e.target.value, "INT")} id="intelligence"></InputHability>
+                        <InputHability value={modifierIntelligence} width='32' readonly onChange={() => console.log('')} id="intelligencehModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('INT')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={intelligence} width='52' onChange={(e) => changeAttribute(e.target.value, "INT")} id="intelligence"></InputHability>
+                        <InputHability value={modifierIntelligence} width='32' readonly onChange={() => console.log('')} id="intelligencehModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('INT')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
             <RowContainer>
                 <TextHability>Sabedoria</TextHability>
-                <InputHability type="number" min={1} max={999} value={wisdom} width='52' onChange={(e) => changeAttribute(e.target.value, "SAB")} id="wisdom"></InputHability>
-                <InputHability value={modifierWisdom} width='32' readonly onChange={() => console.log('')} id="wisdomModifier" ></InputHability>
-                <ButtonReroll onClick={() => calculateStats('SAB')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability disabled type="number" min={1} max={999} value={wisdom} width='52' onChange={(e) => changeAttribute(e.target.value, "SAB")} id="wisdom"></InputHability>
+                        <InputHability value={modifierWisdom} width='32' readonly onChange={() => console.log('')} id="wisdomModifier" ></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('SAB')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={wisdom} width='52' onChange={(e) => changeAttribute(e.target.value, "SAB")} id="wisdom"></InputHability>
+                        <InputHability value={modifierWisdom} width='32' readonly onChange={() => console.log('')} id="wisdomModifier" ></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('SAB')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
             <RowContainer>
                 <TextHability>Carisma</TextHability>
-                <InputHability type="number" min={1} max={999} value={charm} width='52' onChange={(e) => changeAttribute(e.target.value, "CAR")} id="charm"></InputHability>
-                <InputHability value={modifierCharm} width='32' readonly onChange={() => console.log('')} id="charmModifier"></InputHability>
-                <ButtonReroll onClick={() => calculateStats('CAR')}>
-                    <Img
-                        src="./Group.svg"
-                    />
-                </ButtonReroll>
+                {manual ? (
+                    <>
+                        <InputHability disabled type="number" min={1} max={999} value={charm} width='52' onChange={(e) => changeAttribute(e.target.value, "CAR")} id="charm"></InputHability>
+                        <InputHability value={modifierCharm} width='32' readonly onChange={() => console.log('')} id="charmModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('CAR')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                ) : (
+                    <>
+                        <InputHability type="number" min={1} max={999} value={charm} width='52' onChange={(e) => changeAttribute(e.target.value, "CAR")} id="charm"></InputHability>
+                        <InputHability value={modifierCharm} width='32' readonly onChange={() => console.log('')} id="charmModifier"></InputHability>
+                        <ButtonReroll onClick={() => calculateStats('CAR')}>
+                            <Img
+                                src="./Group.svg"
+                            />
+                        </ButtonReroll>
+                    </>
+                )}
             </RowContainer>
         </Container>
     )

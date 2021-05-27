@@ -26,7 +26,9 @@ interface MainContextData {
     quantityDice: number,
     setQuantityDice: (quantityDice: number) => void,
     transitionAnimation: boolean,
-    setTransitionAnimation: (transitionAnimation: boolean) => void
+    setTransitionAnimation: (transitionAnimation: boolean) => void,
+    manual: boolean,
+    setManual: (manual: boolean) => void
 }
 
 
@@ -46,6 +48,7 @@ export function MainProvider({
     const [dice, setDice] = useState<number>(1);
     const [quantityDice, setQuantityDice] = useState<number>(1);
     const [transitionAnimation, setTransitionAnimation] = useState<boolean>(false);
+    const [manual, setManual] = useState<boolean>(false);
 
     useEffect(() => {
         if (page !== "inicial") {
@@ -71,6 +74,17 @@ export function MainProvider({
                 if (page === 'fill') {
                     setQuantity(0);
                     setSubTitle(`Agora, escolha a maneria que deseja informar o valor de suas habilidades!`);
+                }
+                if (page === 'habilityRace') {
+                    axios.request({
+                        method: "POST",
+                        url: `http://127.0.0.1:3333/race/hability/list-with-dependencies`,
+                        data: {
+                            sheet: sheet
+                        }
+                    }).then((response) => {
+
+                    })
                 }
             } catch (e) {
                 console.log(e);
@@ -198,7 +212,9 @@ export function MainProvider({
             quantityDice,
             setQuantityDice,
             transitionAnimation,
-            setTransitionAnimation
+            setTransitionAnimation,
+            manual,
+            setManual
         }}>
             {children}
         </MainContext.Provider>
